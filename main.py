@@ -2,7 +2,7 @@ import os
 import time
 import pyuac
 import re
-import subprocess
+import sys
 
 
 class bcolors:
@@ -47,7 +47,7 @@ def take_privilegies():
     """Restart the script with privilegies"""
     if not pyuac.isUserAdmin():
         pyuac.runAsAdmin()
-        quit()
+        sys.exit()
 
 
 def gotomain():

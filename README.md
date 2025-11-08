@@ -28,9 +28,6 @@ In short:
 127.0.0.1 facebook.com
 127.0.0.1 www.facebook.com
 
-yaml
-Copia codice
-
 3. Once saved, the operating system will redirect all requests for those websites to your local machine (which has no web server running), effectively **blocking access**.
 
 4. To unblock, you can simply use the option 'Unblock all the URLs' or if you prefer edit directly the hosts files.

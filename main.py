@@ -5,7 +5,6 @@ import re
 import subprocess
 
 
-# DECORATION
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -16,7 +15,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-#
 
 
 DEFAULT_TEXT_HOST_FILE = """# Copyright (c) 1993-2006 Microsoft Corp. # # This is a sample HOSTS file used by Microsoft TCP/IP for Windows. 
@@ -41,7 +39,7 @@ DEFAULT_TEXT_HOST_FILE = """# Copyright (c) 1993-2006 Microsoft Corp. # # This i
 # ::1 localhost
 """
 
-HOST_PATH = 'C:\Windows\System32\drivers\etc\hosts'
+HOST_PATH = 'C:\\Windows\\System32\\drivers\\etc\\hosts'
 IP_ADDRESS = '127.0.0.1'
 
 
@@ -117,10 +115,10 @@ def unlock_all_urls():
 
 def add_a_url():
     cls()
-    url_pattern = "((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}([a-zA-Z0-9\.\&\/\?\:@\-_=#])*"
+    url_pattern = "((http|https)\\:\\/\\/)?[a-zA-Z0-9\\.\\/\\?\\:@\\-_=#]+\\.([a-zA-Z]){2,6}([a-zA-Z0-9\\.\\&\\/\\?\\:@\\-_=#])*"
     print(f"{bcolors.WARNING}///////////////////////////////////////////// BLOCK A URL ////////////////////////////////////////////////{bcolors.ENDC}")
     blocked_urls = get_blocked_urls()
-    answer = str(input('Write the url to block (or B to back to main): '))
+    answer = str(input('Write the url to block (or B to return to main): '))
     if answer.upper() == 'B':
         gotomain()
 
@@ -150,14 +148,18 @@ def remove_a_url():
 
     display_blocked_urls(enum=True)
 
-    answer = input('Write the number to unlock (or B to back to main): ')
+    answer = input('Write the number to unlock (or B to return to main): ')
     if answer.upper() == 'B':
         gotomain()
+
+    choiche = -1
 
     try:
         choiche = int(answer)-1
     except:
         print('Invalid selection')
+
+    if choiche == -1:
         time.sleep(0.5)
         remove_a_url()
 
@@ -176,7 +178,7 @@ def remove_a_url():
 def remove_all_urls():
     cls()
     print(f"{bcolors.WARNING}///////////////////////////////////////////// UNLOCK ALL URLS ////////////////////////////////////////////////{bcolors.ENDC}")
-    choiche = input('Are you sure of unblock all the urls? [Y/N]')
+    choiche = input('Are you sure of unblock all the urls? [Y/N]: ')
     match choiche.upper():
         case 'Y':
             unlock_all_urls()
@@ -207,7 +209,7 @@ def main():
     print(f'{bcolors.HEADER}ACTIONS{bcolors.ENDC}')
     print(f'{bcolors.BOLD}1 - Block a URL{bcolors.ENDC}')
     print(f'{bcolors.BOLD}2 - Unlock a URL{bcolors.ENDC}')
-    print(f'{bcolors.BOLD}3 - Unlock all the URLS\n{bcolors.ENDC}')
+    print(f'{bcolors.BOLD}3 - Unlock all the URLs\n{bcolors.ENDC}')
     print(f'{bcolors.WARNING}//////////////////////////////////////////////////////////////////////////////////////////////////////////{bcolors.ENDC}')
 
     user_choiche = input('Your choiche: ')

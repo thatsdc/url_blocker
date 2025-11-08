@@ -178,11 +178,11 @@ def remove_a_url():
 def remove_all_urls():
     cls()
     print(f"{bcolors.WARNING}///////////////////////////////////////////// UNLOCK ALL URLS ////////////////////////////////////////////////{bcolors.ENDC}")
-    choiche = input('Are you sure of unblock all the urls? [Y/N]: ')
+    choiche = input('Are you sure of unlock all the urls? [Y/N]: ')
     match choiche.upper():
         case 'Y':
             unlock_all_urls()
-            print('ALL URLs HAVE BEEN UNBLOCKED')
+            print('ALL URLs HAVE BEEN UNLOCKED')
         case 'N':
             pass
         case _:

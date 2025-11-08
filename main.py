@@ -75,7 +75,7 @@ def get_blocked_urls():
 def display_blocked_urls(enum=False):
     blocked_urls = get_blocked_urls()
     if not len(blocked_urls):
-        print("There is no blocked URL")
+        print("There are no blocked URLs")
     for i, url in enumerate(blocked_urls):
         if enum:
             print(f'{i+1} -> {url}')
@@ -95,9 +95,9 @@ def block_url(url):
             hf.write("\n"+IP_ADDRESS + ' ' + url)
 
 
-def unlock_url(url_to_remove):
+def unblock_url(url_to_remove):
     blocked_urls = get_blocked_urls()
-    unlock_all_urls()
+    unblock_all_urls()
     with open(HOST_PATH, 'a') as hf:
         line_to_add = ''
         for url in blocked_urls:
@@ -108,7 +108,7 @@ def unlock_url(url_to_remove):
         hf.write(line_to_add)
 
 
-def unlock_all_urls():
+def unblock_all_urls():
     with open(HOST_PATH, 'w') as hf:
         hf.write(DEFAULT_TEXT_HOST_FILE)
 
@@ -143,12 +143,12 @@ def add_a_url():
 
 def remove_a_url():
     cls()
-    print(f"{bcolors.WARNING}///////////////////////////////////////////// UNLOCK A URL ////////////////////////////////////////////////{bcolors.ENDC}")
+    print(f"{bcolors.WARNING}///////////////////////////////////////////// UNBLOCK A URL ////////////////////////////////////////////////{bcolors.ENDC}")
     blocked_urls = get_blocked_urls()
 
     display_blocked_urls(enum=True)
 
-    answer = input('Write the number to unlock (or B to return to main): ')
+    answer = input('Write the number to unblock (or B to return to main): ')
     if answer.upper() == 'B':
         gotomain()
 
@@ -165,8 +165,8 @@ def remove_a_url():
 
     if 0 <= choiche < len(blocked_urls):
         url_to_remove = blocked_urls[choiche]
-        unlock_url(url_to_remove)
-        print(f'{url_to_remove} --> UNLOCKED')
+        unblock_url(url_to_remove)
+        print(f'{url_to_remove} --> UNBLOCKED')
     else:
         print('Inexisting selection')
         time.sleep(0.5)
@@ -177,12 +177,12 @@ def remove_a_url():
 
 def remove_all_urls():
     cls()
-    print(f"{bcolors.WARNING}///////////////////////////////////////////// UNLOCK ALL URLS ////////////////////////////////////////////////{bcolors.ENDC}")
-    choiche = input('Are you sure of unlock all the urls? [Y/N]: ')
+    print(f"{bcolors.WARNING}///////////////////////////////////////////// UNBLOCK ALL URLS ////////////////////////////////////////////////{bcolors.ENDC}")
+    choiche = input('Are you sure of unblock all the urls? [Y/N]: ')
     match choiche.upper():
         case 'Y':
-            unlock_all_urls()
-            print('ALL URLs HAVE BEEN UNLOCKED')
+            unblock_all_urls()
+            print('ALL URLs HAVE BEEN UNBLOCKED')
         case 'N':
             pass
         case _:
@@ -208,8 +208,8 @@ def main():
 
     print(f'{bcolors.HEADER}ACTIONS{bcolors.ENDC}')
     print(f'{bcolors.BOLD}1 - Block a URL{bcolors.ENDC}')
-    print(f'{bcolors.BOLD}2 - Unlock a URL{bcolors.ENDC}')
-    print(f'{bcolors.BOLD}3 - Unlock all the URLs\n{bcolors.ENDC}')
+    print(f'{bcolors.BOLD}2 - Unblock a URL{bcolors.ENDC}')
+    print(f'{bcolors.BOLD}3 - Unblock all the URLs\n{bcolors.ENDC}')
     print(f'{bcolors.WARNING}//////////////////////////////////////////////////////////////////////////////////////////////////////////{bcolors.ENDC}')
 
     user_choiche = input('Your choiche: ')

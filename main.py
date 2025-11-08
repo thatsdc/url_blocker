@@ -182,7 +182,7 @@ def remove_all_urls():
     match choiche.upper():
         case 'Y':
             unlock_all_urls()
-            print('ALL URLS REMOVED')
+            print('ALL URLs HAVE BEEN UNBLOCKED')
         case 'N':
             pass
         case _:
